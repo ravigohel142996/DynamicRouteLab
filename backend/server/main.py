@@ -41,6 +41,11 @@ class GenerateRequest(BaseModel):
     topology: str = Field("grid", pattern="^(grid|grid_diagonal|random_extra)$")
     weight_min: int = Field(2, ge=1, le=60)
     weight_max: int = Field(12, ge=1, le=120)
+    weight_min_max_check: Optional[str] = None  # placeholder for validator
+
+    def model_post_init(self, __context):
+        if self.weight_min > self.weight_max:
+            raise ValueError(f"weight_min ({self.weight_min}) must be <= weight_max ({self.weight_max})")
 
 
 class SnapshotRequest(BaseModel):
@@ -75,6 +80,13 @@ class ExperimentRequest(BaseModel):
     congestion_factor: float = Field(3.0, ge=1.0, le=10.0)
     source: Optional[str] = None
     target: Optional[str] = None
+    weight_min: Optional[int] = Field(None, ge=1, le=60)
+    weight_max: Optional[int] = Field(None, ge=1, le=120)
+
+    def model_post_init(self, __context):
+        if self.weight_min is not None and self.weight_max is not None:
+            if self.weight_min > self.weight_max:
+                raise ValueError(f"weight_min ({self.weight_min}) must be <= weight_max ({self.weight_max})")
 
 
 def _bad_request(exc: Exception) -> HTTPException:
@@ -158,6 +170,7 @@ def experiments_run(req: ExperimentRequest) -> dict:
             n=req.n, seed=req.seed, topology=req.topology, trials=req.trials,
             congestion_pct=req.congestion_pct, congestion_factor=req.congestion_factor,
             source=req.source, target=req.target, updates=req.updates,
+            weight_min=req.weight_min or 2, weight_max=req.weight_max or 12,
         )
     except ValueError as exc:
         raise _bad_request(exc)

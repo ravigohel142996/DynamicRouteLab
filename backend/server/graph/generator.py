@@ -16,6 +16,12 @@ def generate_grid(n: int, seed: int, topology: str = "grid", weight_min: int = 2
     Generate synthetic road network.
     topology: grid | grid_diagonal | random_geometric_like (we implement extra edges)
     """
+    if weight_min > weight_max:
+        raise ValueError(f"weight_min ({weight_min}) must be <= weight_max ({weight_max})")
+    if n < 2 or n > 30:
+        raise ValueError(f"n must be in [2, 30], got {n}")
+    if topology not in ("grid", "grid_diagonal", "random_extra"):
+        raise ValueError(f"Unknown topology {topology!r}; choose from grid, grid_diagonal, random_extra")
     rng = random.Random(int(seed))
     nodes = []
     edges = []

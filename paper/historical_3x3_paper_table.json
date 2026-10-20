@@ -1,0 +1,22 @@
+{
+  "_note": "VERBATIM transcription of the paper's reported 3x3 table. Historical record only — not a claim about current code. See docs/PAPER_RESULTS.md. Source: paper draft table (n=3, cost 12).",
+  "experiment": "paper-historical-3x3",
+  "grid": {"n": 3, "nodes": 9, "edges": 12},
+  "description": "Historical reported values from the paper draft. Runtimes include 0.0000 ms entries indicating sub-resolution/rounded measurements.",
+  "normal": {
+    "dijkstra": {"cost": 12, "displayed_runtime_ms": 0.6, "displayed_count": 9, "count_kind": "settled"},
+    "astar": {"cost": 12, "displayed_runtime_ms": 0.4, "displayed_count": 9, "count_kind": "expanded"},
+    "bellman_ford": {"cost": 12, "displayed_runtime_ms": 0.0, "displayed_count": 2, "count_kind": "passes"}
+  },
+  "congestion": {
+    "dijkstra": {"cost": 12, "displayed_runtime_ms": 0.1, "displayed_count": 8, "count_kind": "settled"},
+    "astar": {"cost": 12, "displayed_runtime_ms": 0.0, "displayed_count": 7, "count_kind": "expanded"},
+    "bellman_ford": {"cost": 12, "displayed_runtime_ms": 0.2, "displayed_count": 2, "count_kind": "passes"}
+  },
+  "caveats": [
+    "0.0000 ms is a rounded/below-resolution display artifact, not a true zero-time measurement.",
+    "Displayed counts are algorithm-specific (settled/expanded/passes) and not directly comparable across algorithms.",
+    "The generating seed/weight-range for cost-12 is not recorded in the draft; current engine with n=3 seed 42 weight 2-12 yields cost 19 (different config). Do not claim 12 is reproduced by seed 42.",
+    "Preserved here for transparency per task section 13; the dashboard's 8x8 seed-42 cost-65 experiment is a separate documented benchmark."
+  ]
+}

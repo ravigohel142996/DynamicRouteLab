@@ -1,0 +1,7 @@
+scenario,algorithm,label,path_cost,median_runtime_ms,mean_runtime_ms,stdev_runtime_ms,min_runtime_ms,max_runtime_ms,cv_runtime,processed_median,relaxations_median,correctness_pass_rate,counts_consistent,success
+normal,dijkstra,Dijkstra,19.0,0.008393,0.008525,0.000350,0.008154,0.009240,0.041090,9.0,22.0,1.0,True,True
+normal,astar,A* Search,19.0,0.017030,0.017246,0.000850,0.016381,0.019337,0.049292,9.0,22.0,1.0,True,True
+normal,bellman_ford,Bellman–Ford,19.0,0.016001,0.018762,0.008566,0.015744,0.043121,0.456538,2.0,72.0,1.0,True,True
+congested,dijkstra,Dijkstra,19.0,0.008179,0.008698,0.001529,0.007781,0.012946,0.175755,9.0,22.0,1.0,True,True
+congested,astar,A* Search,19.0,0.016877,0.019384,0.007591,0.016349,0.040932,0.391617,9.0,22.0,1.0,True,True
+congested,bellman_ford,Bellman–Ford,19.0,0.016014,0.016145,0.000532,0.015708,0.017499,0.032958,2.0,72.0,1.0,True,True

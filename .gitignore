@@ -4,6 +4,9 @@ __pycache__/
 .pytest_cache/
 .venv/
 venv/
+.env
+*.egg-info/
+.env.local
 
 # Frontend
 frontend/node_modules/
@@ -13,3 +16,26 @@ frontend/dist/
 .vscode/
 .idea/
 .DS_Store
+Thumbs.db
+
+# Secrets — never commit these
+.env.*
+*.pem
+*.key
+credentials.json
+secrets.toml
+.streamlit/secrets.toml
+
+# Local large artifacts (keep the small checked-in sample exports;
+# large ephemeral runs go to /tmp or a private results-* dir)
+results/tmp/
+results/local_*.json
+results/local_*.csv
+
+# Keep the following tracked (do NOT ignore):
+# - results/benchmark_8x8_seed42.* (preserved 8x8 benchmark)
+# - results/paper_3x3_current_engine.* (preserved 3x3 comparison)
+# - results/reproducibility_manifest.json
+# - results/size_sweep_seed42.*
+# - paper/historical_3x3_paper_table.json
+# - figures/*.png/.pdf/.svg (academic exports)

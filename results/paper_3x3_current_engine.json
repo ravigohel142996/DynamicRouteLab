@@ -1,0 +1,1227 @@
+{
+  "config": {
+    "n": 3,
+    "seed": 42,
+    "topology": "grid",
+    "weight_min": 2,
+    "weight_max": 12,
+    "trials": 10,
+    "congestion_pct": 20,
+    "congestion_factor": 3.0,
+    "source": "0_0",
+    "target": "2_2",
+    "updates": 1,
+    "congestion_seed_offset": 9999
+  },
+  "source": "0_0",
+  "target": "2_2",
+  "normal": {
+    "dijkstra": {
+      "algorithm": "dijkstra",
+      "label": "Dijkstra",
+      "success": true,
+      "path": [
+        "0_0",
+        "0_1",
+        "1_1",
+        "2_1",
+        "2_2"
+      ],
+      "path_cost": 19.0,
+      "processed_kind": "settled",
+      "processed_median": 9.0,
+      "processed_mean": 9,
+      "relaxations_median": 22.0,
+      "relaxations_mean": 22,
+      "median_runtime_ms": 0.0083925,
+      "mean_runtime_ms": 0.0085246,
+      "stdev_runtime_ms": 0.0003502742417655692,
+      "min_runtime_ms": 0.008154,
+      "max_runtime_ms": 0.00924,
+      "cv_runtime": 0.04108981556501996,
+      "correctness_pass_rate": 1.0,
+      "correctness": {
+        "algorithm": "dijkstra",
+        "ref_cost": 19.0,
+        "cost_match": true,
+        "valid_path": true,
+        "recomputed_cost": 19.0,
+        "status": "pass"
+      },
+      "counts_consistent": true,
+      "has_negative_cycle": false,
+      "heuristic_scale": null,
+      "trials_raw": [
+        {
+          "trial": 1,
+          "runtime_ms": 0.00924,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 2,
+          "runtime_ms": 0.008983,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 3,
+          "runtime_ms": 0.008154,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 4,
+          "runtime_ms": 0.008358,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 5,
+          "runtime_ms": 0.008325,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 6,
+          "runtime_ms": 0.008197,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 7,
+          "runtime_ms": 0.008654,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 8,
+          "runtime_ms": 0.008427,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 9,
+          "runtime_ms": 0.008324,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 10,
+          "runtime_ms": 0.008584,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        }
+      ]
+    },
+    "astar": {
+      "algorithm": "astar",
+      "label": "A* Search",
+      "success": true,
+      "path": [
+        "0_0",
+        "0_1",
+        "1_1",
+        "2_1",
+        "2_2"
+      ],
+      "path_cost": 19.0,
+      "processed_kind": "expanded",
+      "processed_median": 9.0,
+      "processed_mean": 9,
+      "relaxations_median": 22.0,
+      "relaxations_mean": 22,
+      "median_runtime_ms": 0.017030499999999997,
+      "mean_runtime_ms": 0.017245899999999998,
+      "stdev_runtime_ms": 0.00085009299491291,
+      "min_runtime_ms": 0.016381,
+      "max_runtime_ms": 0.019337,
+      "cv_runtime": 0.04929246921951943,
+      "correctness_pass_rate": 1.0,
+      "correctness": {
+        "algorithm": "astar",
+        "ref_cost": 19.0,
+        "cost_match": true,
+        "valid_path": true,
+        "recomputed_cost": 19.0,
+        "status": "pass"
+      },
+      "counts_consistent": true,
+      "has_negative_cycle": false,
+      "heuristic_scale": 2.0,
+      "trials_raw": [
+        {
+          "trial": 1,
+          "runtime_ms": 0.019337,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 2,
+          "runtime_ms": 0.017808,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 3,
+          "runtime_ms": 0.016914,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 4,
+          "runtime_ms": 0.016381,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 5,
+          "runtime_ms": 0.016994,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 6,
+          "runtime_ms": 0.016436,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 7,
+          "runtime_ms": 0.01724,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 8,
+          "runtime_ms": 0.017444,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 9,
+          "runtime_ms": 0.016838,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 10,
+          "runtime_ms": 0.017067,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        }
+      ]
+    },
+    "bellman_ford": {
+      "algorithm": "bellman_ford",
+      "label": "Bellman–Ford",
+      "success": true,
+      "path": [
+        "0_0",
+        "0_1",
+        "1_1",
+        "2_1",
+        "2_2"
+      ],
+      "path_cost": 19.0,
+      "processed_kind": "passes",
+      "processed_median": 2.0,
+      "processed_mean": 2,
+      "relaxations_median": 72.0,
+      "relaxations_mean": 72,
+      "median_runtime_ms": 0.0160005,
+      "mean_runtime_ms": 0.0187622,
+      "stdev_runtime_ms": 0.008565659341554248,
+      "min_runtime_ms": 0.015744,
+      "max_runtime_ms": 0.043121,
+      "cv_runtime": 0.45653811075216383,
+      "correctness_pass_rate": 1.0,
+      "correctness": {
+        "algorithm": "bellman_ford",
+        "ref_cost": 19.0,
+        "cost_match": true,
+        "valid_path": true,
+        "recomputed_cost": 19.0,
+        "status": "pass"
+      },
+      "counts_consistent": true,
+      "has_negative_cycle": false,
+      "heuristic_scale": null,
+      "trials_raw": [
+        {
+          "trial": 1,
+          "runtime_ms": 0.01686,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 2,
+          "runtime_ms": 0.016214,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 3,
+          "runtime_ms": 0.015837,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 4,
+          "runtime_ms": 0.015744,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 5,
+          "runtime_ms": 0.015744,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 6,
+          "runtime_ms": 0.016272,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 7,
+          "runtime_ms": 0.016137,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 8,
+          "runtime_ms": 0.015829,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 9,
+          "runtime_ms": 0.015864,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 10,
+          "runtime_ms": 0.043121,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        }
+      ]
+    }
+  },
+  "congested": {
+    "dijkstra": {
+      "algorithm": "dijkstra",
+      "label": "Dijkstra",
+      "success": true,
+      "path": [
+        "0_0",
+        "0_1",
+        "1_1",
+        "2_1",
+        "2_2"
+      ],
+      "path_cost": 19.0,
+      "processed_kind": "settled",
+      "processed_median": 9.0,
+      "processed_mean": 9,
+      "relaxations_median": 22.0,
+      "relaxations_mean": 22,
+      "median_runtime_ms": 0.0081795,
+      "mean_runtime_ms": 0.0086976,
+      "stdev_runtime_ms": 0.001528650181623571,
+      "min_runtime_ms": 0.007781,
+      "max_runtime_ms": 0.012946,
+      "cv_runtime": 0.1757554016767351,
+      "correctness_pass_rate": 1.0,
+      "correctness": {
+        "algorithm": "dijkstra",
+        "ref_cost": 19.0,
+        "cost_match": true,
+        "valid_path": true,
+        "recomputed_cost": 19.0,
+        "status": "pass"
+      },
+      "counts_consistent": true,
+      "has_negative_cycle": false,
+      "heuristic_scale": null,
+      "trials_raw": [
+        {
+          "trial": 1,
+          "runtime_ms": 0.008151,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 2,
+          "runtime_ms": 0.008622,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 3,
+          "runtime_ms": 0.007939,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 4,
+          "runtime_ms": 0.007781,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 5,
+          "runtime_ms": 0.008208,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 6,
+          "runtime_ms": 0.007918,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 7,
+          "runtime_ms": 0.008858,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 8,
+          "runtime_ms": 0.012946,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 9,
+          "runtime_ms": 0.008146,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 10,
+          "runtime_ms": 0.008407,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        }
+      ]
+    },
+    "astar": {
+      "algorithm": "astar",
+      "label": "A* Search",
+      "success": true,
+      "path": [
+        "0_0",
+        "0_1",
+        "1_1",
+        "2_1",
+        "2_2"
+      ],
+      "path_cost": 19.0,
+      "processed_kind": "expanded",
+      "processed_median": 9.0,
+      "processed_mean": 9,
+      "relaxations_median": 22.0,
+      "relaxations_mean": 22,
+      "median_runtime_ms": 0.016877,
+      "mean_runtime_ms": 0.019384,
+      "stdev_runtime_ms": 0.007591105453094432,
+      "min_runtime_ms": 0.016349,
+      "max_runtime_ms": 0.040932,
+      "cv_runtime": 0.39161707867800416,
+      "correctness_pass_rate": 1.0,
+      "correctness": {
+        "algorithm": "astar",
+        "ref_cost": 19.0,
+        "cost_match": true,
+        "valid_path": true,
+        "recomputed_cost": 19.0,
+        "status": "pass"
+      },
+      "counts_consistent": true,
+      "has_negative_cycle": false,
+      "heuristic_scale": 2.0,
+      "trials_raw": [
+        {
+          "trial": 1,
+          "runtime_ms": 0.016902,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 2,
+          "runtime_ms": 0.016716,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 3,
+          "runtime_ms": 0.016852,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 4,
+          "runtime_ms": 0.016349,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 5,
+          "runtime_ms": 0.016567,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 6,
+          "runtime_ms": 0.040932,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 7,
+          "runtime_ms": 0.018205,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 8,
+          "runtime_ms": 0.017323,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 9,
+          "runtime_ms": 0.016529,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        },
+        {
+          "trial": 10,
+          "runtime_ms": 0.017465,
+          "cost": 19.0,
+          "processed": 9,
+          "relaxations": 22,
+          "correct": true
+        }
+      ]
+    },
+    "bellman_ford": {
+      "algorithm": "bellman_ford",
+      "label": "Bellman–Ford",
+      "success": true,
+      "path": [
+        "0_0",
+        "0_1",
+        "1_1",
+        "2_1",
+        "2_2"
+      ],
+      "path_cost": 19.0,
+      "processed_kind": "passes",
+      "processed_median": 2.0,
+      "processed_mean": 2,
+      "relaxations_median": 72.0,
+      "relaxations_mean": 72,
+      "median_runtime_ms": 0.016014,
+      "mean_runtime_ms": 0.0161452,
+      "stdev_runtime_ms": 0.0005321100136876463,
+      "min_runtime_ms": 0.015708,
+      "max_runtime_ms": 0.017499,
+      "cv_runtime": 0.03295778396598657,
+      "correctness_pass_rate": 1.0,
+      "correctness": {
+        "algorithm": "bellman_ford",
+        "ref_cost": 19.0,
+        "cost_match": true,
+        "valid_path": true,
+        "recomputed_cost": 19.0,
+        "status": "pass"
+      },
+      "counts_consistent": true,
+      "has_negative_cycle": false,
+      "heuristic_scale": null,
+      "trials_raw": [
+        {
+          "trial": 1,
+          "runtime_ms": 0.016135,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 2,
+          "runtime_ms": 0.015776,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 3,
+          "runtime_ms": 0.01585,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 4,
+          "runtime_ms": 0.015708,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 5,
+          "runtime_ms": 0.015733,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 6,
+          "runtime_ms": 0.017499,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 7,
+          "runtime_ms": 0.016361,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 8,
+          "runtime_ms": 0.015976,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 9,
+          "runtime_ms": 0.016052,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        },
+        {
+          "trial": 10,
+          "runtime_ms": 0.016362,
+          "cost": 19.0,
+          "processed": 2,
+          "relaxations": 72,
+          "correct": true
+        }
+      ]
+    }
+  },
+  "reference_cost_normal": 19.0,
+  "congested_graph": {
+    "nodes": [
+      {
+        "id": "0_0",
+        "r": 0,
+        "c": 0,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "0_1",
+        "r": 0,
+        "c": 1,
+        "x": 1,
+        "y": 0
+      },
+      {
+        "id": "0_2",
+        "r": 0,
+        "c": 2,
+        "x": 2,
+        "y": 0
+      },
+      {
+        "id": "1_0",
+        "r": 1,
+        "c": 0,
+        "x": 0,
+        "y": -1
+      },
+      {
+        "id": "1_1",
+        "r": 1,
+        "c": 1,
+        "x": 1,
+        "y": -1
+      },
+      {
+        "id": "1_2",
+        "r": 1,
+        "c": 2,
+        "x": 2,
+        "y": -1
+      },
+      {
+        "id": "2_0",
+        "r": 2,
+        "c": 0,
+        "x": 0,
+        "y": -2
+      },
+      {
+        "id": "2_1",
+        "r": 2,
+        "c": 1,
+        "x": 1,
+        "y": -2
+      },
+      {
+        "id": "2_2",
+        "r": 2,
+        "c": 2,
+        "x": 2,
+        "y": -2
+      }
+    ],
+    "edges": [
+      {
+        "source": "0_0",
+        "target": "1_0",
+        "weight": 12.0,
+        "original_weight": 12.0,
+        "closed": false,
+        "id": "0_0__1_0"
+      },
+      {
+        "source": "0_0",
+        "target": "0_1",
+        "weight": 3.0,
+        "original_weight": 3.0,
+        "closed": false,
+        "id": "0_0__0_1"
+      },
+      {
+        "source": "0_1",
+        "target": "1_1",
+        "weight": 2.0,
+        "original_weight": 2.0,
+        "closed": false,
+        "id": "0_1__1_1"
+      },
+      {
+        "source": "0_1",
+        "target": "0_2",
+        "weight": 6.0,
+        "original_weight": 6.0,
+        "closed": false,
+        "id": "0_1__0_2"
+      },
+      {
+        "source": "0_2",
+        "target": "1_2",
+        "weight": 5.0,
+        "original_weight": 5.0,
+        "closed": false,
+        "id": "0_2__1_2"
+      },
+      {
+        "source": "1_0",
+        "target": "2_0",
+        "weight": 15.0,
+        "original_weight": 5.0,
+        "closed": false,
+        "id": "1_0__2_0"
+      },
+      {
+        "source": "1_0",
+        "target": "1_1",
+        "weight": 12.0,
+        "original_weight": 4.0,
+        "closed": false,
+        "id": "1_0__1_1"
+      },
+      {
+        "source": "1_1",
+        "target": "2_1",
+        "weight": 3.0,
+        "original_weight": 3.0,
+        "closed": false,
+        "id": "1_1__2_1"
+      },
+      {
+        "source": "1_1",
+        "target": "1_2",
+        "weight": 12.0,
+        "original_weight": 12.0,
+        "closed": false,
+        "id": "1_1__1_2"
+      },
+      {
+        "source": "1_2",
+        "target": "2_2",
+        "weight": 10.0,
+        "original_weight": 10.0,
+        "closed": false,
+        "id": "1_2__2_2"
+      },
+      {
+        "source": "2_0",
+        "target": "2_1",
+        "weight": 3.0,
+        "original_weight": 3.0,
+        "closed": false,
+        "id": "2_0__2_1"
+      },
+      {
+        "source": "2_1",
+        "target": "2_2",
+        "weight": 11.0,
+        "original_weight": 11.0,
+        "closed": false,
+        "id": "2_1__2_2"
+      }
+    ],
+    "positions": {
+      "0_0": [
+        0,
+        0
+      ],
+      "0_1": [
+        1,
+        0
+      ],
+      "0_2": [
+        2,
+        0
+      ],
+      "1_0": [
+        0,
+        -1
+      ],
+      "1_1": [
+        1,
+        -1
+      ],
+      "1_2": [
+        2,
+        -1
+      ],
+      "2_0": [
+        0,
+        -2
+      ],
+      "2_1": [
+        1,
+        -2
+      ],
+      "2_2": [
+        2,
+        -2
+      ]
+    },
+    "meta": {
+      "n": 3,
+      "seed": 42,
+      "topology": "grid"
+    }
+  },
+  "base_graph": {
+    "nodes": [
+      {
+        "id": "0_0",
+        "r": 0,
+        "c": 0,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "0_1",
+        "r": 0,
+        "c": 1,
+        "x": 1,
+        "y": 0
+      },
+      {
+        "id": "0_2",
+        "r": 0,
+        "c": 2,
+        "x": 2,
+        "y": 0
+      },
+      {
+        "id": "1_0",
+        "r": 1,
+        "c": 0,
+        "x": 0,
+        "y": -1
+      },
+      {
+        "id": "1_1",
+        "r": 1,
+        "c": 1,
+        "x": 1,
+        "y": -1
+      },
+      {
+        "id": "1_2",
+        "r": 1,
+        "c": 2,
+        "x": 2,
+        "y": -1
+      },
+      {
+        "id": "2_0",
+        "r": 2,
+        "c": 0,
+        "x": 0,
+        "y": -2
+      },
+      {
+        "id": "2_1",
+        "r": 2,
+        "c": 1,
+        "x": 1,
+        "y": -2
+      },
+      {
+        "id": "2_2",
+        "r": 2,
+        "c": 2,
+        "x": 2,
+        "y": -2
+      }
+    ],
+    "edges": [
+      {
+        "source": "0_0",
+        "target": "1_0",
+        "weight": 12.0,
+        "original_weight": 12.0,
+        "closed": false,
+        "id": "0_0__1_0"
+      },
+      {
+        "source": "0_0",
+        "target": "0_1",
+        "weight": 3.0,
+        "original_weight": 3.0,
+        "closed": false,
+        "id": "0_0__0_1"
+      },
+      {
+        "source": "0_1",
+        "target": "1_1",
+        "weight": 2.0,
+        "original_weight": 2.0,
+        "closed": false,
+        "id": "0_1__1_1"
+      },
+      {
+        "source": "0_1",
+        "target": "0_2",
+        "weight": 6.0,
+        "original_weight": 6.0,
+        "closed": false,
+        "id": "0_1__0_2"
+      },
+      {
+        "source": "0_2",
+        "target": "1_2",
+        "weight": 5.0,
+        "original_weight": 5.0,
+        "closed": false,
+        "id": "0_2__1_2"
+      },
+      {
+        "source": "1_0",
+        "target": "2_0",
+        "weight": 5.0,
+        "original_weight": 5.0,
+        "closed": false,
+        "id": "1_0__2_0"
+      },
+      {
+        "source": "1_0",
+        "target": "1_1",
+        "weight": 4.0,
+        "original_weight": 4.0,
+        "closed": false,
+        "id": "1_0__1_1"
+      },
+      {
+        "source": "1_1",
+        "target": "2_1",
+        "weight": 3.0,
+        "original_weight": 3.0,
+        "closed": false,
+        "id": "1_1__2_1"
+      },
+      {
+        "source": "1_1",
+        "target": "1_2",
+        "weight": 12.0,
+        "original_weight": 12.0,
+        "closed": false,
+        "id": "1_1__1_2"
+      },
+      {
+        "source": "1_2",
+        "target": "2_2",
+        "weight": 10.0,
+        "original_weight": 10.0,
+        "closed": false,
+        "id": "1_2__2_2"
+      },
+      {
+        "source": "2_0",
+        "target": "2_1",
+        "weight": 3.0,
+        "original_weight": 3.0,
+        "closed": false,
+        "id": "2_0__2_1"
+      },
+      {
+        "source": "2_1",
+        "target": "2_2",
+        "weight": 11.0,
+        "original_weight": 11.0,
+        "closed": false,
+        "id": "2_1__2_2"
+      }
+    ],
+    "positions": {
+      "0_0": [
+        0,
+        0
+      ],
+      "0_1": [
+        1,
+        0
+      ],
+      "0_2": [
+        2,
+        0
+      ],
+      "1_0": [
+        0,
+        -1
+      ],
+      "1_1": [
+        1,
+        -1
+      ],
+      "1_2": [
+        2,
+        -1
+      ],
+      "2_0": [
+        0,
+        -2
+      ],
+      "2_1": [
+        1,
+        -2
+      ],
+      "2_2": [
+        2,
+        -2
+      ]
+    },
+    "meta": {
+      "n": 3,
+      "seed": 42,
+      "topology": "grid"
+    }
+  },
+  "traffic_changes": [
+    {
+      "edge_id": "1_0__2_0",
+      "source": "1_0",
+      "target": "2_0",
+      "old_weight": 5.0,
+      "new_weight": 15.0,
+      "delta": 10.0,
+      "type": "congested"
+    },
+    {
+      "edge_id": "1_0__1_1",
+      "source": "1_0",
+      "target": "1_1",
+      "old_weight": 4.0,
+      "new_weight": 12.0,
+      "delta": 8.0,
+      "type": "congested"
+    }
+  ],
+  "affected_edge_ids": [
+    "1_0__1_1",
+    "1_0__2_0"
+  ],
+  "updates": [
+    {
+      "index": 1,
+      "congestion_seed": 10041,
+      "affected_count": 2,
+      "cost_before": 19.0,
+      "cost_after": 19.0,
+      "cost_delta": 0.0,
+      "cost_unchanged": true,
+      "route_before": [
+        "0_0",
+        "0_1",
+        "1_1",
+        "2_1",
+        "2_2"
+      ],
+      "route_after": [
+        "0_0",
+        "0_1",
+        "1_1",
+        "2_1",
+        "2_2"
+      ],
+      "route_changed": false,
+      "route_changed_cost_unchanged": false,
+      "recompute_median_sum_ms": 0.041070499999999996,
+      "all_correct": true
+    }
+  ],
+  "route_change_frequency": 0.0,
+  "recompute_total_ms": 0.041070499999999996,
+  "comparison": {
+    "route_changed": false,
+    "cost_delta": 0.0,
+    "normal_cost": 19.0,
+    "congested_cost": 19.0,
+    "cost_unchanged": true
+  },
+  "env": {
+    "python_version": "3.11.2",
+    "implementation": "CPython",
+    "platform": "Linux-6.1.158+-x86_64-with-glibc2.36",
+    "machine": "x86_64",
+    "packages": {
+      "fastapi": "0.110.0",
+      "uvicorn": "0.29.0",
+      "pydantic": "2.6.4"
+    },
+    "timer": "time.perf_counter_ns (monotonic, high resolution)",
+    "timing_boundary": "Each timed sample is one call to an algorithm function. Generation, traffic updates, reference checks, serialisation, and rendering are excluded.",
+    "warmup_calls_per_algorithm": 1,
+    "trial_ordering": "round-robin across algorithms"
+  },
+  "wall_clock_ms": 2.376617,
+  "timestamp": 1792521797.0688329,
+  "timestamp_iso": "2026-10-20T18:43:17+00:00"
+}

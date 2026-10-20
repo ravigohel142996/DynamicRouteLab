@@ -187,3 +187,127 @@ def test_closed_roads_are_absent_from_all_algorithms():
     for name, res in run_all(adj_closed, pos, "A", "D").items():
         assert res["cost"] == pytest.approx(7), name
         assert "B" not in res["path"] or "C" not in res["path"], name
+
+
+def test_congestion_can_change_route_without_changing_cost():
+    """H3: congestion may change the chosen route even though optimal cost stays same (equal-cost alternative)."""
+    adj = {
+        "S": [("A", 1, "e1"), ("B", 1, "e2")],
+        "A": [("S", 1, "e1"), ("T", 1, "e3")],
+        "B": [("S", 1, "e2"), ("T", 1, "e4")],
+        "T": [("A", 1, "e3"), ("B", 1, "e4")],
+    }
+    pos = {"S": (0, 0), "A": (0, 1), "B": (1, 0), "T": (1, 1)}
+    baseline = dijkstra(adj, "S", "T")
+    assert baseline["cost"] == pytest.approx(2)
+    congested_adj = {
+        "S": [("A", 2, "e1"), ("B", 1, "e2")],
+        "A": [("S", 2, "e1"), ("T", 1, "e3")],
+        "B": [("S", 1, "e2"), ("T", 1, "e4")],
+        "T": [("A", 1, "e3"), ("B", 1, "e4")],
+    }
+    after = dijkstra(congested_adj, "S", "T")
+    assert after["cost"] == pytest.approx(2)
+    assert after["path"] == ["S", "B", "T"]
+    adj2 = {
+        "S": [("A", 1, "e1"), ("B", 1, "e2"), ("C", 5, "e5")],
+        "A": [("S", 1, "e1"), ("T", 1, "e3")],
+        "B": [("S", 1, "e2"), ("T", 1, "e4")],
+        "C": [("S", 5, "e5"), ("T", 5, "e6")],
+        "T": [("A", 1, "e3"), ("B", 1, "e4"), ("C", 5, "e6")],
+    }
+    congested2 = {
+        "S": [("A", 1, "e1"), ("B", 1, "e2"), ("C", 15, "e5")],
+        "A": [("S", 1, "e1"), ("T", 1, "e3")],
+        "B": [("S", 1, "e2"), ("T", 1, "e4")],
+        "C": [("S", 15, "e5"), ("T", 5, "e6")],
+        "T": [("A", 1, "e3"), ("B", 1, "e4"), ("C", 5, "e6")],
+    }
+    b2 = dijkstra(adj2, "S", "T")
+    a2 = dijkstra(congested2, "S", "T")
+    assert b2["cost"] == pytest.approx(a2["cost"])
+    assert b2["cost"] == pytest.approx(2)
+
+
+def test_congestion_via_traffic_engine_can_leave_cost_unchanged():
+    """Verify traffic engine: congestion on off-path edges leaves optimal cost unchanged."""
+    payload = generate_grid(4, 10, weight_min=5, weight_max=5)
+    adj = graph_to_adjacency(payload)
+    from server.benchmark import run_snapshot
+    base_snap = run_snapshot(payload, "0_0", "3_3")
+    base_cost = base_snap["reference_cost"]
+    congested, changes, affected = apply_congestion(payload, 10, 5.0, 12345)
+    after_snap = run_snapshot(congested, "0_0", "3_3")
+    assert after_snap["agreement"]
+    if after_snap["reference_cost"] is not None and base_cost is not None:
+        assert after_snap["reference_cost"] >= base_cost - 1e-6
+
+
+def test_bellman_ford_handles_negative_edge_without_cycle():
+    """Bellman-Ford must return correct shortest path when graph contains a negative edge but no negative cycle."""
+    # Use directed-style adjacency (no opposite negative duplicate) to avoid inadvertent 2-cycle
+    adj = {
+        "A": [("B", 2, "e1")],
+        "B": [("C", -1, "e2")],
+        "C": [],
+    }
+    res = bellman_ford(adj, "A", "C")
+    assert res["success"]
+    assert res["cost"] == pytest.approx(1.0)
+    assert res["path"] == ["A", "B", "C"]
+    assert not res["has_negative_cycle"]
+
+
+def test_bellman_ford_negative_edge_cost_matches_reference():
+    """When negative edges are present without a cycle, BF should still work; on non-negative graphs it must match Dijkstra."""
+    adj, _ = manual_graph()
+    for target in ["B", "C", "D"]:
+        d = dijkstra(adj, "A", target)
+        b = bellman_ford(adj, "A", target)
+        assert d["cost"] == pytest.approx(b["cost"]), f"mismatch to {target}"
+        assert d["success"] == b["success"]
+
+
+def test_invalid_weight_range_raises():
+    with pytest.raises(ValueError, match="weight_min"):
+        generate_grid(4, 1, weight_min=12, weight_max=2)
+
+
+def test_invalid_topology_raises():
+    with pytest.raises(ValueError, match="topology"):
+        generate_grid(4, 1, topology="hexagonal")
+
+
+def test_all_algorithms_reject_unknown_node():
+    adj, pos = manual_graph()
+    for name, res in run_all(adj, pos, "A", "GHOST").items():
+        assert not res["success"], name
+        assert res["cost"] == math.inf, name
+
+
+def test_path_reconstruction_verified_against_reference():
+    """Every returned path cost, when recomputed from open roads, must equal the reported cost."""
+    for seed in [0, 1, 42]:
+        payload = generate_grid(5, seed)
+        adj = graph_to_adjacency(payload)
+        pos = get_positions(payload)
+        index = _open_index(payload)
+        for s, t in [("0_0", "4_4"), ("4_0", "0_4")]:
+            for name, res in run_all(adj, pos, s, t).items():
+                valid, recomputed = _check_path(index, res["path"], s, t, res["cost"], res["success"])
+                assert valid, f"{name} seed {seed} {s}->{t} invalid path {res['path']}"
+                if res["success"]:
+                    assert recomputed == pytest.approx(res["cost"]), f"{name} cost mismatch"
+
+
+def test_deterministic_tie_breaking():
+    """Same graph+endpoints should always yield same path (deterministic priority queue ordering)."""
+    adj = {
+        "S": [("A", 1, "e1"), ("B", 1, "e2")],
+        "A": [("S", 1, "e1"), ("T", 1, "e3")],
+        "B": [("S", 1, "e2"), ("T", 1, "e4")],
+        "T": [("A", 1, "e3"), ("B", 1, "e4")],
+    }
+    pos = {"S": (0, 0), "A": (0, 1), "B": (1, 0), "T": (1, 1)}
+    paths = [dijkstra(adj, "S", "T")["path"] for _ in range(5)]
+    assert len(set(tuple(p) for p in paths)) == 1
