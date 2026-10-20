@@ -1,6 +1,5 @@
-# Legacy Streamlit prototype (app.py) only. The research platform itself is in backend/ and
-# frontend/; see README.md. Install backend/requirements.txt for the platform.
-streamlit>=1.32
+# Streamlit deployment entry point (app.py). The shared research engine is in backend/server/.
+streamlit>=1.50
 networkx>=3.2
 matplotlib>=3.8
 pandas>=2.0
