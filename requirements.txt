@@ -1,3 +1,5 @@
+# Legacy Streamlit prototype (app.py) only. The research platform itself is in backend/ and
+# frontend/; see README.md. Install backend/requirements.txt for the platform.
 streamlit>=1.32
 networkx>=3.2
 matplotlib>=3.8
