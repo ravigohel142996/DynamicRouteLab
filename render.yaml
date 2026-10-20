@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: dynamicroutelab-demo
+    runtime: docker
+    region: singapore
+    plan: free # Sleeps when idle; choose an always-on plan for more reliable paper/reviewer access.
+    branch: main
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeploy: false # Deploy a reviewed commit deliberately for research reproducibility.

@@ -37,7 +37,7 @@ frontend/
   src/api.ts, src/types.ts
 docs/METHODOLOGY.md      assumptions, metrics, limitations, reproducibility
 examples/sample_experiment.json   sample configuration (sample data, no measurements)
-app.py, requirements.txt  original Streamlit prototype, kept for reference (see below)
+app.py, requirements.txt  Streamlit Cloud entry point; reuses the shared backend research engine
 run_backend.sh, run_frontend.sh   development launch helpers
 pytest.ini
 ```
@@ -92,25 +92,49 @@ The suite covers:
 
 ## Production deployment
 
-The backend serves the built frontend, so the platform runs as one process on one port.
+The backend serves the built frontend, so the app runs as one process on one port. A multi-stage
+`Dockerfile` builds the Vite app and runs FastAPI; `render.yaml` is a Render Blueprint using that
+image, with `/api/health` as its health check.
+
+### Deploy a hosted demo on Render
+
+1. Push or merge the reviewed source commit to the GitHub repository's `main` branch.
+2. In Render, create a **New Blueprint**, connect the repository, and apply `render.yaml`.
+3. After the image builds, open the service's assigned `*.onrender.com` URL and verify
+   `/api/health` returns `{"status":"ok", ...}`. `autoDeploy: false` is set deliberately; deploy
+   later revisions manually after reviewing and recording the commit.
+
+The included Blueprint uses Render's free plan to avoid opting into a charge. Free instances sleep
+when idle, so the first request after inactivity may be slow. For dependable reviewer access, select
+an always-on plan in Render (which may incur a charge). The URL remains the same when the plan is
+changed.
+
+For a paper or supplement, record the deployed Git commit SHA, service URL, deployment date, and
+experiment configuration. Keep one instance per benchmark run and document its plan/CPU allocation:
+measured runtimes depend on the host's CPU share. Do not treat cloud demo timings as hardware-
+independent results. The API is stateless; it does not persist experiment data.
+
+### Other Docker hosts / manual run
+
+Build and run from the repository root:
 
 ```bash
-cd frontend && npm ci && npm run build && cd ..          # creates frontend/dist
+docker build -t dynamicroutelab .
+docker run --rm -p 8000:8000 -e PORT=8000 dynamicroutelab
+```
+
+For a non-Docker deployment, build the frontend before starting the backend:
+
+```bash
+cd frontend && npm ci && npm run build && cd ..
 python3 -m pip install -r backend/requirements.txt
 python3 -m uvicorn server.main:app --app-dir backend --host 0.0.0.0 --port "${PORT:-8000}"
 ```
 
-Notes for a cloud host:
-
-- Set the start command to the uvicorn line above and bind to `0.0.0.0` on the platform's `$PORT`.
-- Run the build step during deployment, before the start command. Without `frontend/dist`, the
-  API still works, but `/` returns 404.
-- The API is stateless, so any number of instances can run behind a load balancer. Be aware that
-  benchmark timings depend on the instance's CPU share. Keep one instance per benchmark to reduce noise.
-- Experiments are synchronous HTTP requests. In the development sandbox, the largest configuration
-  (n = 18, 30 trials, 10 updates, grid + random extra roads) completed in about 1 s. Your timings
-  will vary with hardware. Keep the platform's request timeout comfortably above the expected run time.
-- No authentication is implemented. Do not expose the instance publicly without an access layer.
+**Public-access warning:** no authentication or per-user resource limits are implemented. The API
+accepts graph and benchmark requests from anyone who can reach it. Do not put sensitive data on the
+service; before opening it broadly, add an access-control and abuse-protection layer at the host or
+edge. All built-in data is synthetic, but benchmark requests still consume CPU.
 
 ## Using the platform
 
@@ -141,12 +165,27 @@ Notes for a cloud host:
 | Correctness | `pass` if the cost matches the reference and the path is valid. |
 | Route-change frequency | Share of traffic updates where the Dijkstra route differs from the baseline route. |
 
-## Legacy Streamlit prototype
+## Streamlit Cloud deployment (existing URL)
 
-The original single-file Streamlit prototype is still in the repository as `app.py`
-(dependencies in the root `requirements.txt`). It uses its own A* heuristic, which is valid only
-on plain grids. The platform above replaces it and should be used for research. Run it only if
-needed: `python3 -m pip install -r requirements.txt && streamlit run app.py`.
+`app.py` is the Streamlit deployment entry point and reuses the same graph generator, algorithms,
+traffic model, correctness checks, and experiment runner as `backend/server/`. It does not need a
+separate FastAPI process. Streamlit Cloud installs the root `requirements.txt`; do not also install
+`backend/requirements.txt` into that environment. The latter is for the separate FastAPI deployment.
+
+To update an existing Streamlit Community Cloud app while keeping its URL:
+
+1. In the app settings, confirm the connected repository, deployment branch, and main file path
+   (`app.py` at the repository root).
+2. Push or merge the reviewed changes to that configured branch. Streamlit Cloud will rebuild the
+   app from that commit; use **Reboot app** in its management page if a rebuild does not start.
+3. Check the app's deployment logs if dependency installation or startup fails. The Python entry
+   point imports shared code from `backend/server/`, so keep that directory in the repository.
+
+For a paper, record the deployed commit SHA and date alongside the Streamlit URL and experiment
+configuration. The demo remains synthetic and unauthenticated; do not submit sensitive data, and
+consider host-level access/abuse controls before broad public sharing.
+
+Run locally with: `python3 -m pip install -r requirements.txt && streamlit run app.py`.
 
 ## Research integrity notes
 
